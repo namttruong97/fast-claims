@@ -230,7 +230,7 @@ export default function PersonalClaimsView() {
               }
             >
               <div className="grid grid-cols-4">
-                <ul className="col-span-3 text-xs leading-5 text-gray-600">
+                <ul className="col-span-3 text-xs leading-6 text-gray-600">
                   <li className="flex">
                     <span className="w-[100px] min-w-[100px] ">Merchant:</span>
                     <span className="max-w-[200px] text-ellipsis whitespace-nowrap overflow-hidden">
