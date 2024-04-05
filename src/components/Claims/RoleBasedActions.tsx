@@ -35,11 +35,11 @@ export const RoleBasedActions = ({
   const { update } = useUpdateClaim();
 
   const handleEdit = () =>
-    store.setEditModal({ isOpen: true, data: omit(record, ["children"]) });
+    store.setEditModal({ isOpen: true, data: omit(record, ["children"]) as any });
 
   const updateClaim = (status: ClaimStatus) => {
     const recordData = omit(record, ["children"]);
-    const newRecordData: TClaim = {
+    const newRecordData: any = {
       ...recordData,
       claim_state: status,
     };

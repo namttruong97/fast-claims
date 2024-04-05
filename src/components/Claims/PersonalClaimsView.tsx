@@ -27,7 +27,7 @@ import {
   Tag,
 } from "antd";
 import dayjs from "dayjs";
-import { isEmpty, omit } from "lodash";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { fetchPersonalClaimRecords } from "src/calls/claims";
 import useUserStateStore from "stores/userStateStore";
@@ -167,7 +167,7 @@ export default function PersonalClaimsView() {
   };
 
   const handleEdit = (item) =>
-    store.setEditModal({ isOpen: true, data: omit(item) });
+    store.setEditModal({ isOpen: true, data: item });
 
   if (isEmpty(dataSource)) {
     return (

@@ -11,6 +11,8 @@ export type TClaimStatus = keyof typeof ClaimStatus;
 export type TClaimCurrency = "SGG" | "VND" | "USD";
 
 export type TClaim = {
+  children?: TClaim[];
+  isDuplicated: boolean;
   claim_id: string;
   org_id: string;
   staff_id: string;
