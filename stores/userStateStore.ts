@@ -1,6 +1,7 @@
-import { TApplication } from "@/src/types/application";
-import { TEmployee } from "@/src/types/employee";
-import { IModalEdit } from "@components/ModalEdit";
+
+import { IModalEdit } from "@/components/ModalEdit";
+import { TApplication } from "types/application";
+import { TEmployee } from "types/employee";
 import { create } from "zustand";
 
 export interface UserState {
@@ -18,10 +19,10 @@ export interface UserState {
 }
 
 export const useUserStateStore = create<UserState>((set, get) => ({
-  applicationData: null,
+  applicationData: null as any,
   setApplicationData: (data) => set(() => ({ applicationData: data })),
 
-  loggedInUser: null,
+  loggedInUser: null as any,
   setLoggedInUser: (data: TEmployee) => set(() => ({ loggedInUser: data })),
 
   listUsers: [],

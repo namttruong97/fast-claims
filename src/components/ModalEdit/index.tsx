@@ -1,5 +1,4 @@
-import useUpdateClaim from "@/src/hooks/useUpdateClaim";
-import { TClaim } from "@/src/types/claim";
+
 import {
   DatePicker,
   Form,
@@ -11,9 +10,11 @@ import {
 } from "antd";
 import { useForm } from "antd/es/form/Form";
 import dayjs from "dayjs";
+import useUpdateClaim from "hooks/useUpdateClaim";
 import { pick } from "lodash";
 import { useEffect } from "react";
-import useUserStateStore from "stores/userStateStore";
+import { TClaim } from "types/claim";
+import useUserStateStore from "../../../stores/userStateStore";
 
 export interface IModalEdit {
   title?: string;
@@ -57,7 +58,7 @@ export default function ModalEdit({ title = "Edit Claim" }: IModalEdit) {
   const onFinish = () => {
     const newClaim = transferNewClaim();
 
-    update(newClaim);
+    update(newClaim as any);
     handleCancel();
   };
 
@@ -68,7 +69,7 @@ export default function ModalEdit({ title = "Edit Claim" }: IModalEdit) {
     "receipt_ccy",
   ]);
 
-  const transferInitValues = (initvals) => {
+  const transferInitValues = (initvals: any) => {
     initvals.date_of_purchase = dayjs(
       editModal.data?.receipt_datetime_of_purchase
     );

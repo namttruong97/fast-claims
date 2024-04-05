@@ -1,37 +1,28 @@
-import useUpdateClaim from "@/src/hooks/useUpdateClaim";
-import { useWindowSize } from "@/src/hooks/useWindowSize";
-import { ClaimStatus, TClaim } from "@/src/types/claim";
-import { TEmployeeRole } from "@/src/types/employee";
+
 import {
   DownloadOutlined,
   ExclamationCircleOutlined,
   TagOutlined,
 } from "@ant-design/icons";
-import {
-  convertToCSV,
-  downloadCSV,
-  getCategoryColor,
-  getSymbolCurrency,
-  mergeDuplicateDataTable,
-  shortenStaffName,
-  transferShortenCurrency,
-} from "@util/helper";
+
 import {
   Button,
   Card,
   Skeleton,
   Spin,
   Table,
-  TableColumnsType,
-  Tag,
+  Tag
 } from "antd";
 import { difference, isEmpty } from "lodash";
 import { useEffect, useState } from "react";
-import {
-  fetchManagerialViewClaimRecords,
-  prettifyDatetime,
-} from "src/calls/claims";
-import useUserStateStore from "stores/userStateStore";
+
+import { fetchManagerialViewClaimRecords, prettifyDatetime } from "calls/claims";
+import useUpdateClaim from "hooks/useUpdateClaim";
+import { useWindowSize } from "hooks/useWindowSize";
+import { ClaimStatus, TClaim } from "types/claim";
+import { TEmployeeRole } from "types/employee";
+import { convertToCSV, downloadCSV, getCategoryColor, getSymbolCurrency, mergeDuplicateDataTable, shortenStaffName, transferShortenCurrency } from "util/helper";
+import useUserStateStore from "../../../stores/userStateStore";
 import ClaimsStatus from "./ClaimsStatus";
 import RoleBasedActions from "./RoleBasedActions";
 
@@ -39,13 +30,13 @@ export const SCREEN_SIZE_MOBILE = 640;
 const getColumn = (
   roles: TEmployeeRole[],
   screenWidth: number
-): TableColumnsType<TClaim & { children?: TClaim[] }> => [
+): any=> [
   {
     title: "ID",
     fixed: screenWidth < SCREEN_SIZE_MOBILE ? "left" : undefined,
     dataIndex: "staff_id",
     key: "staff_id",
-    render: (text, record) => {
+    render: (text: any, record: any) => {
       return (
         <div>
           <div>{shortenStaffName(text)}</div>
@@ -67,7 +58,7 @@ const getColumn = (
     title: "Date of Purchase",
     dataIndex: "receipt_datetime_of_purchase",
     key: "receipt_datetime_of_purchase",
-    render: (text) => {
+    render: (text: any) => {
       return prettifyDatetime(text);
     },
   },
@@ -86,7 +77,7 @@ const getColumn = (
     title: "Total Amount",
     dataIndex: "receipt_total_amount",
     key: "receipt_total_amount",
-    render: (text, record) => (
+    render: (text: any, record: any) => (
       <div>
         {getSymbolCurrency(record.receipt_ccy)}
         <span className="ml-[2px]">{transferShortenCurrency(text)}</span>
@@ -97,7 +88,7 @@ const getColumn = (
     title: "Category",
     dataIndex: "claim_category",
     key: "claim_category",
-    render: (text) => (
+    render: (text: any) => (
       <span>
         <TagOutlined
           style={{ marginRight: 8, color: getCategoryColor(text) }}
@@ -115,13 +106,13 @@ const getColumn = (
     title: "Status",
     dataIndex: "claim_state",
     key: "claim_state",
-    render: (text) => <ClaimsStatus status={text} />,
+    render: (text: any) => <ClaimsStatus status={text} />,
   },
   {
     title: "Action",
     key: "action",
     fixed: screenWidth < SCREEN_SIZE_MOBILE ? "right" : undefined,
-    render: (record) => (
+    render: (record: any) => (
       <RoleBasedActions record={record} mode="manager" roles={roles} />
     ),
   },
@@ -182,7 +173,7 @@ export default function ManagerClaimsView() {
               },
             ],
           ];
-          setClaimRecords(recordsResponse);
+          setClaimRecords(recordsResponse as any);
 
           const newDataManageClaims = {
             [staffId]: {
@@ -202,7 +193,7 @@ export default function ManagerClaimsView() {
 
       fetchRecords();
     } else {
-      setClaimRecords(manageClaims);
+      setClaimRecords(manageClaims as any);
     }
   }, [store.loggedInUser]);
 
@@ -312,7 +303,7 @@ export default function ManagerClaimsView() {
           rowSelection={{
             selectedRowKeys,
             type: "checkbox",
-            onChange: (selectedRowKeys: string[]) => {
+            onChange: (selectedRowKeys: any) => {
               setSelectedRowKeys(selectedRowKeys);
             },
           }}

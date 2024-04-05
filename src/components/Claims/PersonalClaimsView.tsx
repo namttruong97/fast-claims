@@ -1,22 +1,3 @@
-import useUpdateClaim from "@/src/hooks/useUpdateClaim";
-import { ClaimStatus, TClaim } from "@/src/types/claim";
-import { TEmployeeRole } from "@/src/types/employee";
-import {
-  EditOutlined,
-  ExclamationCircleOutlined,
-  TagOutlined,
-  VerifiedOutlined,
-} from "@ant-design/icons";
-import ModalEdit from "@components/ModalEdit";
-import {
-  DATE_TIME_FORMAT,
-  getCategoryColor,
-  getSymbolCurrency,
-  mergeDuplicateDataTable,
-  shortenStaffName,
-  transferDuplicated,
-  transferShortenCurrency,
-} from "@util/helper";
 import {
   Button,
   Card,
@@ -29,8 +10,28 @@ import {
 import dayjs from "dayjs";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
-import { fetchPersonalClaimRecords } from "src/calls/claims";
-import useUserStateStore from "stores/userStateStore";
+
+import {
+  EditOutlined,
+  ExclamationCircleOutlined,
+  TagOutlined,
+  VerifiedOutlined,
+} from "@ant-design/icons";
+import { fetchPersonalClaimRecords } from "calls/claims";
+import useUpdateClaim from "hooks/useUpdateClaim";
+import { ClaimStatus, TClaim } from "types/claim";
+import { TEmployeeRole } from "types/employee";
+import {
+  DATE_TIME_FORMAT,
+  getCategoryColor,
+  getSymbolCurrency,
+  mergeDuplicateDataTable,
+  shortenStaffName,
+  transferDuplicated,
+  transferShortenCurrency,
+} from "util/helper";
+import useUserStateStore from "../../../stores/userStateStore";
+import ModalEdit from "../ModalEdit";
 import ClaimsStatus from "./ClaimsStatus";
 import RoleBasedActions from "./RoleBasedActions";
 
@@ -166,8 +167,7 @@ export default function PersonalClaimsView() {
     update(newRecordData);
   };
 
-  const handleEdit = (item) =>
-    store.setEditModal({ isOpen: true, data: item });
+  const handleEdit = (item: any) => store.setEditModal({ isOpen: true, data: item });
 
   if (isEmpty(dataSource)) {
     return (
@@ -191,14 +191,14 @@ export default function PersonalClaimsView() {
           scroll={{ x: "max-content" }}
           loading={!claimRecords.length}
           columns={columns}
-          dataSource={dataSource}
+          dataSource={dataSource as TClaim[]}
           rowKey={(obj) => obj.claim_id}
         />
       </Card>
 
       {/* Show on mobile */}
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 lg:hidden personal-claims">
-        {dataList?.map((item) => {
+        {(dataList as any)?.map((item: { claim_id: any; receipt_unique_id: any; isDuplicated: any; claim_state: any; claim_category: any; receipt_merchant_name: any; receipt_datetime_of_purchase: any; receipt_address: any; receipt_ccy: any; receipt_total_amount: any; claim_description: any; children?: TClaim[] | undefined; org_id?: string; staff_id?: string; receipt_language?: string; receipt_items?: null; receipt_taxes?: number; receipt_img_url?: string; receipt_payment_method?: string; claim_account?: string; receipt_country?: string; initial_pred?: null; ocr_text?: null; flagged?: null | undefined; updatedAt?: string; createdAt?: string; }) => {
           return (
             <Card
               key={item.claim_id}
@@ -277,7 +277,7 @@ export default function PersonalClaimsView() {
                     Edit
                   </Button>
                   <Button
-                    onClick={() => handleVerify(item)}
+                    onClick={() => handleVerify(item as any)}
                     type="primary"
                     icon={<VerifiedOutlined />}
                     className="text-xs w-[70px]"

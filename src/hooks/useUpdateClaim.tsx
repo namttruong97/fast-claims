@@ -1,5 +1,5 @@
 import { isEmpty } from "lodash";
-import useUserStateStore from "stores/userStateStore";
+import useUserStateStore from "../../stores/userStateStore";
 import { TClaim } from "../types/claim";
 
 const useUpdateClaim = () => {
@@ -11,7 +11,7 @@ const useUpdateClaim = () => {
 
     if (!isEmpty(personalClaims)) {
       const indexReplace = personalClaims.findIndex(
-        (item) => item.claim_id === newRecord.claim_id
+        (item: any) => item.claim_id === newRecord.claim_id
       );
 
       personalClaims[indexReplace] = newRecord;
@@ -20,11 +20,11 @@ const useUpdateClaim = () => {
     }
 
     // Update manage claim if existed
-    let manageClaims =
+    let manageClaims: any =
       store.applicationData?.[newRecord?.staff_id]?.manageClaims;
     if (!isEmpty(manageClaims)) {
       const indexManageReplace = manageClaims.findIndex(
-        (item) => item.claim_id === newRecord.claim_id
+        (item: any) => item.claim_id === newRecord.claim_id
       );
       manageClaims[indexManageReplace] = newRecord;
     } else {

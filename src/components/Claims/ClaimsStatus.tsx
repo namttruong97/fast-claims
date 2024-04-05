@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 
-const getStatusColor = (category) => {
+const getStatusColor = (category: any) => {
   switch (category) {
     case "SUBMITTED":
       return "blue";
@@ -19,7 +19,7 @@ const getStatusColor = (category) => {
   }
 };
 
-export const ClaimsStatus = ({ status }) => {
+export const ClaimsStatus = ({ status }: {status: any}) => {
   return <Tag className="text-xs" color={getStatusColor(status)}>{status}</Tag>;
 };
 

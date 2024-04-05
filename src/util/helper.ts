@@ -5,7 +5,7 @@ import { TClaim, TClaimCurrency } from "../types/claim";
 const DEFAULT_LENGTH_SHORTEN = 30;
 export const DATE_TIME_FORMAT = "MM/DD/YYYY hh:mm A";
 
-export const getCategoryColor = (category) => {
+export const getCategoryColor = (category: any) => {
   switch (category) {
     case "Medical":
       return "blue";
@@ -37,7 +37,7 @@ export const transferShortenCurrency = (value: number): string => {
 
 // I assume we only have three currency type
 export const getSymbolCurrency = (currency: TClaimCurrency) => {
-  const mappingCurrency = {
+  const mappingCurrency: any = {
     SGD: "S$",
     USD: "$",
     VND: "₫",
@@ -80,7 +80,7 @@ export const mergeDuplicateDataTable = (claimRecords: TClaim[]) => {
   const uniqClaims = uniqWith(claimRecords, checkDuplicateClaim);
   let leftClaims = difference(claimRecords, uniqClaims);
 
-  const results = uniqClaims.reduce((arr, claim) => {
+  const results = uniqClaims.reduce((arr: any, claim) => {
     const pickLeftDuplicate = leftClaims.filter((item) =>
       checkDuplicateClaim(item, claim)
     );
@@ -104,7 +104,7 @@ export const transferDuplicated = (claimRecords: TClaim[]) => {
   const uniqClaims = uniqWith(claimRecords, checkDuplicateClaim);
   let leftClaims = difference(claimRecords, uniqClaims);
 
-  const results = uniqClaims.reduce((arr, claim) => {
+  const results = uniqClaims.reduce((arr:any, claim) => {
     const pickLeftDuplicate = leftClaims
       .filter((item) => checkDuplicateClaim(item, claim))
       ?.map((item) => ({ ...item, isDuplicated: true }));
@@ -121,7 +121,7 @@ export const transferDuplicated = (claimRecords: TClaim[]) => {
   return results;
 };
 
-export const downloadCSV = (content) => {
+export const downloadCSV = (content: BlobPart) => {
   // Create a blob
   var blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
   var url = URL.createObjectURL(blob);
@@ -135,10 +135,10 @@ export const downloadCSV = (content) => {
   pom.click();
 };
 
-export const convertToCSV = (items) => {
-  const replacer = (key, value) => (value === null ? "" : value);
+export const convertToCSV = (items: any[]) => {
+  const replacer = (key: any, value: null) => (value === null ? "" : value);
   const header = Object.keys(items[0]);
-  let csv = items.map((row) =>
+  let csv: any = items.map((row: { [x: string]: any; }) =>
     header
       .map((fieldName) => JSON.stringify(row[fieldName], replacer))
       .join(",")

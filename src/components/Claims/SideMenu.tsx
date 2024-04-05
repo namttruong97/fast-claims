@@ -8,7 +8,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import useUserStateStore from "stores/userStateStore";
+import useUserStateStore from "../../../stores/userStateStore";
 
 const { Sider } = Layout;
 
@@ -86,7 +86,7 @@ export default function SideMenu({}) {
           mode="inline"
           defaultSelectedKeys={["/"]}
           defaultOpenKeys={["claims"]}
-          selectedKeys={[current]}
+          selectedKeys={[current as any]}
           items={items}
           onClick={onClick}
         />

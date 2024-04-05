@@ -1,14 +1,15 @@
-import Page401 from "@/src/pages/401";
-import { BlockLoading } from "@components/BlockLoading";
-import SideMenu from "@components/Claims/SideMenu";
-import UserSwitch from "@components/Claims/UserSwitch";
+
 import { Layout } from "antd";
 import { isEmpty } from "lodash";
 import { useRouter } from "next/router";
-import useUserStateStore from "stores/userStateStore";
+import Page401 from "pages/401";
+import useUserStateStore from "../../../stores/userStateStore";
+import { BlockLoading } from "../BlockLoading";
+import SideMenu from "../Claims/SideMenu";
+import UserSwitch from "../Claims/UserSwitch";
 const { Header, Content } = Layout;
 
-const RootLayout = ({ children }) => {
+const RootLayout = ({ children }: {children : any}) => {
   const store = useUserStateStore();
   const router = useRouter();
 

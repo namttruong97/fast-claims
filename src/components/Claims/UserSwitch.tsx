@@ -1,9 +1,10 @@
-import { TEmployee } from "@/src/types/employee";
-import { shortenStaffName } from "@util/helper";
+
 import { Dropdown, MenuProps } from "antd";
+import { fetchEmployees } from "calls/claims";
 import { useEffect, useState } from "react";
-import { fetchEmployees } from "src/calls/claims";
-import { UserState } from "stores/userStateStore";
+import { TEmployee } from "types/employee";
+import { shortenStaffName } from "util/helper";
+import { UserState } from "../../../stores/userStateStore";
 
 export default function UserSwitch({ store }: { store: UserState }) {
   const staffId = shortenStaffName(store.loggedInUser?.staff_id);
@@ -26,7 +27,7 @@ export default function UserSwitch({ store }: { store: UserState }) {
     setEmployees(store.listUsers);
   }, []);
 
-  const handleSelectEmployee = (value) => {
+  const handleSelectEmployee = (value: any) => {
     const selectedUser = employees.find((item) => item.staff_id === value);
     store.setLoggedInUser(selectedUser);
   };

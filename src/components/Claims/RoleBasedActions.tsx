@@ -1,7 +1,3 @@
-import useUpdateClaim from "@/src/hooks/useUpdateClaim";
-import { useWindowSize } from "@/src/hooks/useWindowSize";
-import { ClaimStatus, TClaim } from "@/src/types/claim";
-import { TEmployeeRole } from "@/src/types/employee";
 import {
   CheckCircleOutlined,
   EditOutlined,
@@ -11,8 +7,12 @@ import {
 } from "@ant-design/icons";
 import { Button, Tooltip } from "antd";
 import classNames from "classnames";
+import useUpdateClaim from "hooks/useUpdateClaim";
+import { useWindowSize } from "hooks/useWindowSize";
 import { omit } from "lodash";
-import useUserStateStore from "stores/userStateStore";
+import { ClaimStatus, TClaim } from "types/claim";
+import { TEmployeeRole } from "types/employee";
+import useUserStateStore from "../../../stores/userStateStore";
 import { SCREEN_SIZE_MOBILE } from "./ManagerClaimsView";
 interface IRoleBasedActions {
   record: TClaim;
@@ -35,7 +35,10 @@ export const RoleBasedActions = ({
   const { update } = useUpdateClaim();
 
   const handleEdit = () =>
-    store.setEditModal({ isOpen: true, data: omit(record, ["children"]) as any });
+    store.setEditModal({
+      isOpen: true,
+      data: omit(record, ["children"]) as any,
+    });
 
   const updateClaim = (status: ClaimStatus) => {
     const recordData = omit(record, ["children"]);

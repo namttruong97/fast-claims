@@ -1,6 +1,6 @@
-import { shortenStaffName } from "@util/helper";
 import { Card } from "antd";
-import useUserStateStore from "stores/userStateStore";
+import { shortenStaffName } from "util/helper";
+import useUserStateStore from "../../stores/userStateStore";
 
 function IndexPage() {
   const store = useUserStateStore();

@@ -1,5 +1,6 @@
-import supabase from "@util/supabase";
+
 import { isEmpty } from 'lodash';
+import supabase from 'util/supabase';
 
 
 
@@ -22,7 +23,7 @@ export async function fetchEmployees() {
   return result;
 }
 
-function parseDateString(dateString) {
+function parseDateString(dateString: any) {
     if (!dateString) {
       return new Date()
     }
@@ -33,7 +34,7 @@ function parseDateString(dateString) {
     return new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1]).getTime();
 }
 
-async function fetchStaffUnderManager(manager_id){
+async function fetchStaffUnderManager(manager_id: any){
     const { data, error } = await supabase
     .from('org_employees')
     .select('staff_id')
@@ -43,14 +44,14 @@ async function fetchStaffUnderManager(manager_id){
     return data
 }
 
-export async function fetchManagerialViewClaimRecords(staff_id) {
-    const managing_staff_ids = (await fetchStaffUnderManager(staff_id)).map(record => record.staff_id)
+export async function fetchManagerialViewClaimRecords(staff_id:any) {
+    const managing_staff_ids = (await fetchStaffUnderManager(staff_id))?.map(record => record.staff_id)
 
 
         const { data, error } = await supabase
         .from('Claims')
         .select('*')
-        .in('staff_id', managing_staff_ids)
+        .in('staff_id', managing_staff_ids as any)
         .in('claim_state', ['SUBMITTED','APPROVED','REJECTED','FINALIZED'])
 
         console.log('fetchManagerialViewClaimRecords',data)
@@ -71,7 +72,7 @@ export async function fetchManagerialViewClaimRecords(staff_id) {
 }
 
 
-export async function fetchPersonalClaimRecords(staff_id) {
+export async function fetchPersonalClaimRecords(staff_id: any) {
     const { data, error } = await supabase
         .from('Claims')
         .select('*')
@@ -90,30 +91,6 @@ export async function fetchPersonalClaimRecords(staff_id) {
     console.log('fetchPersonalClaimRecords',sortedData);
     return sortedData;
 }
-
-export async function handleApprove(record_id) {
-
-}
-
-export async function handleReject(record_id) {
-
-}
-
-export async function handleFinalize(record_id) {
-
-}
-
-export async function handleVerify(record_id) {
-
-}
-
-
-
-export async function handleDelete(record_id) {
-
-}
-
-
 
 const data = [
     {
@@ -328,7 +305,7 @@ const data = [
     }
   ]
   
-  export function prettifyDatetime(dt_str) {
+  export function prettifyDatetime(dt_str: any) {
     const date = new Date(dt_str);
     const options = { 
       month: 'short', 

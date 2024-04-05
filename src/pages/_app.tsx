@@ -1,12 +1,11 @@
-import RootLayout from "@components/Layout/RootLayout";
-import "@styles/global.css";
-import theme from "@util/theme";
-import { ConfigProvider } from "antd";
-import { UserStateProvider } from "stores/UserStateContext";
+import RootLayout from "@/components/Layout/RootLayout";
+import { ConfigProvider, theme } from "antd";
+import { UserStateProvider } from "../../stores/UserStateContext";
+import "../styles/global.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: { Component: any, pageProps: any }) {
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={theme as any}>
       <UserStateProvider {...pageProps}>
         <RootLayout>
           <Component {...pageProps} />
