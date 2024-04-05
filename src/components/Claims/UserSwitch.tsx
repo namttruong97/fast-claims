@@ -56,7 +56,7 @@ export default function UserSwitch({ store }: { store: UserState }) {
         },
       }}
     >
-      <div className="flex flex-col w-[180px] lg:w-[200px]  items-center px-0 lg:px-4 justify-center !leading-3  h-[64px] text-white cursor-pointer group hover:text-blue-primary hover:bg-white focus:bg-white focus:text-blue-primary">
+      <div className="flex flex-col w-[180px] lg:w-[210px]  items-center px-0 lg:px-4 justify-center !leading-3  h-[64px] text-white cursor-pointer group hover:text-blue-primary hover:bg-white focus:bg-white focus:text-blue-primary">
         <div className="mb-[10px] text-[14px] font-bold">Switch User</div>
         <div className="h-3">
           <span className="inline-block">
