@@ -140,39 +140,6 @@ export default function ManagerClaimsView() {
       const fetchRecords = async () => {
         try {
           let recordsResponse = await fetchManagerialViewClaimRecords(staffId);
-
-          recordsResponse = [
-            ...recordsResponse,
-            ...[
-              {
-                claim_id: "ae7edd1a-bb07-4431-86c8-6029f34a2289",
-                org_id: "8f98b6bd-7f7d-4128-b0cc-525d97dbc126",
-                staff_id: "1d640009-98f3-4522-a706-72a74575e72d",
-                receipt_language: "Vietnamese",
-                receipt_address: "Singapore",
-                receipt_unique_id: "dda5878a-66db-49f9-bd0e-0a29e2423d1b",
-                receipt_datetime_of_purchase: "2020-04-18T17:52:26.35324+00:00",
-                receipt_merchant_name: "Simpson, Perez and Davis2",
-                receipt_ccy: "SGD",
-                receipt_total_amount: 443,
-                receipt_items: "",
-                receipt_taxes: 17.39,
-                receipt_img_url: "https://placekitten.com/493/385",
-                claim_description: "Agree blue follow organization some.",
-                receipt_payment_method: "Card",
-                claim_category: "Travel",
-                claim_account: "00040 Acc Example",
-                claim_state: "SUBMITTED",
-                receipt_country: "Vietnam",
-                initial_pred: null,
-                ocr_text: null,
-                "flagged?": null,
-                updatedAt: "2024-03-26T15:46:44.325412+00:00",
-                createdAt: "2024-03-26T15:46:44.539184+00:00",
-                report_id: null,
-              },
-            ],
-          ];
           setClaimRecords(recordsResponse as any);
 
           const newDataManageClaims = {
