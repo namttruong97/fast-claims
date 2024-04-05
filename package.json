@@ -1,0 +1,43 @@
+{
+  "name": "ghq-platforms",
+  "version": "0.1.0",
+  "private": true,
+  "lockfileVersion": 2,
+  "requires": true,
+  "keywords": [
+    "ghq-platforms"
+  ],
+  "scripts": {
+    "dev": "next dev 2> error.log",
+    "build": "npm install --force && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "appStart": "concurrently \"npm run server\" \"npm run dev\"",
+    "netlify-build": "npm install --force && next build",
+    "stripe-webhook": "stripe listen --forward-to localhost:3000/api/stripe-webhook"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.2",
+    "@types/react": "^18.2.47",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.3.3"
+  },
+  "resolutions": {
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.38"
+  },
+  "preinstall": " npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
+  "dependencies": {
+    "@ant-design/cssinjs": "^1.18.5",
+    "@ant-design/icons": "^5.3.6",
+    "@supabase/supabase-js": "^2.41.1",
+    "antd": "^5.15.4",
+    "autoprefixer": "^10.4.19",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.10",
+    "lodash": "^4.17.21",
+    "next": "^14.1.4",
+    "postcss": "^8.4.38",
+    "zustand": "^4.4.7"
+  }
+}

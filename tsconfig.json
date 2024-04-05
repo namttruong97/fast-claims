@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
+    "downlevelIteration": true,
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@util/*": ["src/util/*"],
+      "@controllers/*": ["backend/lib/controllers/*"],
+      // "@/backend/controllers/*": ["backend/controllers/*"],
+      "@/components/*": ["components/*"],
+      "@/src/*": ["src/*"],
+      "@api/*": ["backend/lib/api/*"],
+      "@calls/*": ["src/calls"],
+      "@images/*": ["images/*"],
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@locales/*": ["locales/*"]
+      //   "@/store/*": ["store/*"],
+      //   "@/config": ["config"],
+      //   "@/lib/auth": ["backend/lib/auth"],
+      //   "@/lib/db": ["backend/lib/db"],
+      //   "@/vars.": ["util/vars.js"],
+    },
+    "strict": false,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

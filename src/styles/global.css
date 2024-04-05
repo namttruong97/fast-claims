@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  #__next {
+    /* Full height of screen and flex so that we can push footer */
+    /* to the bottom even if content is shorter than screen */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Prevent child elements from shrinking when content */
+  /* is taller than the screen (quirk of having flex parent) */
+  #__next > * {
+    flex-shrink: 0;
+  }
+}
+
+@layer utilities {
+  .section.bg-white + .section.bg-white {
+    border-top: 1px solid #f0f0f0;
+  }
+  .pattern-dots {
+    background-image: radial-gradient(currentColor 2px, transparent 2px);
+    background-size: calc(10 * 2px) calc(10 * 2px);
+  }
+}
+
+@media (min-width: 768px) {
+  /* Adjust this breakpoint as necessary for your design */
+  .left-aligned-modal .ant-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+}
+
+.ant-layout-header {
+  padding-right: 16px !important;
+}
+
+.ant-modal-root .ant-modal {
+  max-width: 85vw !important;
+  margin: auto !important;
+}
+
+.ant-table table {
+  font-size: 14px !important;
+}
+
+@media (max-width: 575px) {
+  .ant-form-item {
+    margin-bottom: 10px !important;
+  }
+  .ant-form-item-label {
+    padding-bottom: 0 !important;
+  }
+  .ant-modal-content {
+    padding: 12px 16px !important;
+  }
+  .personal-claims .ant-card-body {
+    padding: 12px !important;
+  }
+  .ant-table table {
+    font-size: 12px !important;
+  }
+}
+
