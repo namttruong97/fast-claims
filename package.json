@@ -11,14 +11,12 @@
     "dev": "next dev 2> error.log",
     "build": "npm install --force && next build",
     "start": "next start",
-    "lint": "next lint",
-    "appStart": "concurrently \"npm run server\" \"npm run dev\"",
-    "netlify-build": "npm install --force && next build",
-    "stripe-webhook": "stripe listen --forward-to localhost:3000/api/stripe-webhook"
+    "lint": "next lint"
   },
   "devDependencies": {
-    "@types/node": "20.12.2",
-    "@types/react": "^18.2.47",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.12.2",
+    "@types/react": "^18.2.74",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.4"
   },
@@ -26,11 +24,11 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.38"
   },
-  "preinstall": " npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.5",
     "@ant-design/icons": "^5.3.6",
     "@supabase/supabase-js": "^2.41.1",
+    "@types/react-dom": "^18.2.24",
     "antd": "^5.15.4",
     "autoprefixer": "^10.4.19",
     "classnames": "^2.5.1",
